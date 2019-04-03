@@ -14,9 +14,10 @@ class User extends CI_Controller {
       redirect('login');
     }
     $data['user'] = $this->user_model->get_user('id',$_SESSION['user_id']);
+		$data2['event'] = $this->user_model->get_event2('user',$_SESSION['nama']);
     $this->load->view('layout/header_profile',$data);
 		$this->load->view('layout/sidebar',$data);
-    $this->load->view('user/profile',$data);
+    $this->load->view('user/profile',$data2);
 		$this->load->view('layout/footer');
   }
 

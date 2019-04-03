@@ -97,67 +97,30 @@
                 <tr>
                   <th>Nama Acara</th>
                   <th>Tanggal Pelaksanaan</th>
-                  <th>Tanggal Selesai</th>
+                  <th>Tiket Terjual</th>
                   <th>Sisa Tiket</th>
+                  <th>Status Penjualan</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                  <td>Call of Duty IV</td>
-                  <td><span class="label label-success">Shipped</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                  <td>Samsung Smart TV</td>
-                  <td><span class="label label-warning">Pending</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                  <td>iPhone 6 Plus</td>
-                  <td><span class="label label-danger">Delivered</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                  <td>Samsung Smart TV</td>
-                  <td><span class="label label-info">Processing</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                  <td>Samsung Smart TV</td>
-                  <td><span class="label label-warning">Pending</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                  <td>iPhone 6 Plus</td>
-                  <td><span class="label label-danger">Delivered</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                  <td>Call of Duty IV</td>
-                  <td><span class="label label-success">Shipped</span></td>
-                  <td>
-                    <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                  </td>
-                </tr>
+                  <?php foreach ($event as $e ): ?>
+                    <tr>
+                      <td><a href=<?php echo base_url()?>event/tampil/<?php echo $e['id_event']?>/<?php echo $e['slug']?>><?php echo $e['nama_acara']?></a></td>
+                      <td><?php echo $e['tanggal_acara']?></td>
+                      <td><?php echo $e['id_event']?></td>
+                      <td><?php echo $e['id_event']?></td>
+                      <!-- <td><span class="label label-success">Shipped</span></td> -->
+
+                        <td>
+                          <span class="label label-success">Dibuka</span>
+                        </td>
+                        <td><a class="label label-warning" href=<?php echo base_url()?>edit/<?php echo $e['id_event']?>>edit</a>
+</td>
+                      <
+                    </tr>
+                  <?php endforeach; ?>
+
+
                 </tbody>
               </table>
             </div>

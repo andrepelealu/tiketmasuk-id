@@ -35,6 +35,25 @@ class User_Model extends CI_Model
     }
     return false ;
   }
+  public function get_event2($key, $value){
+    $query = $this->db->get_where('event',array($key=>$value));
+    if(!empty($query->row_array())){
+      return $query->result_array();
+    }
+    return false ;
+  }
+  public function get_new_id($user){
+
+    $this->db->order_by('id_event', 'desc');
+    $this->db->limit(1);
+    $query = $this->db->get_where('event',array('user'=>$user));
+    //$query = $this->db->query("SELECT id_event FROM event WHERE user = $user ORDER BY id_event DESC LIMIT 1");
+    if(!empty($query->row_array())){
+      return $query->row_array();
+    }
+    return false ;
+
+  }
   ///update role setelah klik email verifikasi
   public function update_role($user_id,$role_nr)
   {
@@ -53,6 +72,8 @@ class User_Model extends CI_Model
   {
     // $this->load->helper('string');
     // $_SESSION['token'] = random_string('alnum',16);
+    $acara = $this->input->post('acara');
+    $slug = str_replace(" ","-",$acara);
 
     $data = [
 
@@ -61,23 +82,27 @@ class User_Model extends CI_Model
       'user'                        => $this->input->post('nama_'),
       'nama_acara'                  => $this->input->post('acara'),
       'tanggal_acara'               => $this->input->post('tanggal_mulai'),
-      'waktu_mulai'                 => $this->input->post('tanggal_selesai'),
-      'waktu_selesai'               => $this->input->post('mulai'),
-      'tempat'                      => $this->input->post('selesai'),
+      'tanggal_acara_selesai'       => $this->input->post('tanggal_selesai'),
+      'waktu_mulai'                 => $this->input->post('mulai'),
+      'waktu_selesai'               => $this->input->post('selesai'),
+      'tempat'                      => $this->input->post('tempat'),
       'deskripsi'                   => $this->input->post('deskripsi'),
       'kuota_tiket'                 => $this->input->post('kuota_tiket'),
       'tanggal_jual_mulai'          => $this->input->post('tanggal_jual_mulai'),
       'tanggal_jual_selesai'        => $this->input->post('tanggal_jual_selesai'),
-      'harga_tiket'                 => $this->input->post('harga_tiket')
-
+      'harga_tiket'                 => $this->input->post('harga_tiket'),
+      'slug'                        => $slug
     ];
+
     $bisa = $this->db->insert('event', $data);
     if($bisa){
-      echo '<script language="javascript">';
-      echo 'if (confirm("Event Berhasil di Buat !")) {
-          location.replace("addevent")2
-        }';
-      echo '</script>';
+      // get id terbaru -> lempar ke link -> redirect halaman penjualan
+      redirect('event/'.$data[user].'/'.$data[slug]);
+      // echo '<script language="javascript">';
+      // echo 'if (confirm("Event Berhasil di Buat !")) {
+      //     location.replace("../event")
+      //   }';
+      // echo '</script>';
       //
       //redirect('profile');
     }else{
@@ -92,6 +117,48 @@ class User_Model extends CI_Model
   {
     return $this->db->get('users');
 
+  }
+  public function editevent($id){
+    $data = array(
+      'nama_penyelenggara'          => $this->input->post('nama'),
+      'user'                        => $this->input->post('nama_'),
+      'nama_acara'                  => $this->input->post('acara'),
+      'tanggal_acara'               => $this->input->post('tanggal_mulai'),
+      'tanggal_acara_selesai'       => $this->input->post('tanggal_selesai'),
+      'waktu_mulai'                 => $this->input->post('mulai'),
+      'waktu_selesai'               => $this->input->post('selesai'),
+      'tempat'                      => $this->input->post('tempat'),
+      'deskripsi'                   => $this->input->post('deskripsi'),
+      'kuota_tiket'                 => $this->input->post('kuota_tiket'),
+      'tanggal_jual_mulai'          => $this->input->post('tanggal_jual_mulai'),
+      'tanggal_jual_selesai'        => $this->input->post('tanggal_jual_selesai'),
+      'harga_tiket'                 => $this->input->post('harga_tiket')
+      // 'slug'                        => $slug
+    );
+
+    $this->db->where('id_event', $id);
+    $bisa = $this->db->update('event', $data);
+    if($bisa){
+      // get id terbaru -> lempar ke link -> redirect halaman penjualan
+      //redirect('event/'.$data[user].'/'.$data[slug]);
+      // echo '<script language="javascript">';
+      // echo 'if (confirm("Event Berhasil di edit !")) {';
+//       echo '<script language="javascript">';
+// echo 'alert("message successfully sent")';
+// echo '</script>';
+        redirect('edit/'.$id);
+
+
+      // echo '</script>';
+
+      // redirect('profile');
+    }else{
+      echo '<script language="javascript">';
+      echo 'if (confirm("Event Gagal di update !")) {
+          location.replace("edit")
+        }';
+      echo '</script>';
+    }
   }
 }
 

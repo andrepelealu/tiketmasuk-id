@@ -53,6 +53,7 @@ class Auth extends CI_Controller {
 
 		//set sessions
 		$_SESSION['user_id'] = $user['id'];
+		$_SESSION['nama'] = $user['nama'];
 		$_SESSION['logged_in'] = true;
 		//redirect
 		redirect('dashboard');
@@ -75,6 +76,7 @@ class Auth extends CI_Controller {
 			//save data di sessions
 			//set sessions
 			$_SESSION['user_id'] = $user['id'];
+			$_SESSION['nama'] = $user['nama'];
 			$_SESSION['logged_in'] = true;
 			//redirect
 			redirect('dashboard');
