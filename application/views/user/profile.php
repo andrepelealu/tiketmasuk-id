@@ -100,10 +100,14 @@
                   <th>Tiket Terjual</th>
                   <th>Sisa Tiket</th>
                   <th>Status Penjualan</th>
+                  <th>Pengaturan</th>
                 </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($event as $e ): ?>
+                  <?php if($event == true){
+                    foreach ($event as $e ):
+                   ?>
+
                     <tr>
                       <td><a href=<?php echo base_url()?>event/tampil/<?php echo $e['id_event']?>/<?php echo $e['slug']?>><?php echo $e['nama_acara']?></a></td>
                       <td><?php echo $e['tanggal_acara']?></td>
@@ -114,11 +118,11 @@
                         <td>
                           <span class="label label-success">Dibuka</span>
                         </td>
-                        <td><a class="label label-warning" href=<?php echo base_url()?>edit/<?php echo $e['id_event']?>>edit</a>
-</td>
-                      <
+                        <td><a class="label label-warning" href=<?php echo base_url()?>edit/<?php echo $e['id_event']?>>Edit</a>
+                        <a class="label label-danger" href=<?php echo base_url()?>hapus/<?php echo $e['id_event']?> onclick="return  confirm('Hapus Event Ini ?')">Hapus</a></td>
+
                     </tr>
-                  <?php endforeach; ?>
+                  <?php endforeach;}else echo 'Tidak ada data' ?>
 
 
                 </tbody>
@@ -128,7 +132,7 @@
           </div>
           <!-- /.box-body -->
           <div class="box-footer clearfix">
-            <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
+            <a href="addevent" class="btn btn-sm btn-warning btn-flat pull-left">Buat Event</a>
             <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
           </div>
           <!-- /.box-footer -->

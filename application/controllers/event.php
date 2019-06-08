@@ -12,22 +12,19 @@ class Event extends CI_Controller {
 
 	}
 
+	public function hapusevent($id){
+	if(!$this->user_model->is_loggedIn())  {
+				redirect('login');
+			}
+	$this->user_model->hapusevent($id);
 
+	}
 	public function tampil($user,$slug){
 		if(!$this->user_model->is_loggedIn())  {
 				redirect('login');
 			}
-		// $user 	= $this->user_model->get_event('nama_acara',$acara);
-		// $user 	= $this->user_model->get_event('id_event',$id);
-		//
-		// if(!$user){
-		// 	die('email gada');
-		// }else {
 			$data['user'] = $this->user_model->get_user('id',$_SESSION['user_id']);
-			// $user_ = $user['nama'];
-			// $data['event'] = $this->user_model->get_event('id_event',$id);
 			$data2['id'] = $this->user_model->get_new_id($user);
-			// die('ada');
 			$slug_['slug'] = $slug;
 			$this->load->view('layout/header_depan',$slug_);
 			$this->load->view('layout/sidebar',$data2);
@@ -36,17 +33,12 @@ class Event extends CI_Controller {
 	}
 
 	public function user($id){
-		// $user 	= $this->user_model->get_event('nama_acara',$acara);
 		$user 	= $this->user_model->get_event('id_event',$id);
 
 		if(!$user){
 			die('email gada');
 		}else {
-			// $data['user'] = $this->user_model->get_user('id',$_SESSION['user_id']);
-			// $user_ = $user['nama'];
 			$data['event'] = $this->user_model->get_event('id_event',$id);
-			// $data2['id'] = $this->user_model->get_new_id($this->user['nama']);
-			// die('ada');
 			$this->load->view('user/showevent',$data);
 		}
 
@@ -56,14 +48,14 @@ class Event extends CI_Controller {
 		if(!$this->user_model->is_loggedIn())  {
 				redirect('login');
 			}else {
-			$data['harga'] = $this->beli_model->ambilharga($id);
+			$harga = $this->beli_model->ambilharga($id);
 			$cek = $this->beli_model->cek_tiket($id);
 			if($cek<0){
 				echo 'tiket habis';
 			}else{
-				$this->beli_model->beli($id);
-				$this->beli_model->beli($data);
-
+				$this->beli_model->beli($id,$harga);
+				// $this->beli_model->kurangitiket($id);
+				//
 			}
 
 		}

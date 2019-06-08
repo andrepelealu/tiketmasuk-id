@@ -31,7 +31,7 @@ class User_Model extends CI_Model
   public function get_event($key, $value){
     $query = $this->db->get_where('event',array($key=>$value));
     if(!empty($query->row_array())){
-      return $query->row_array();
+      return $query->row_array(); /// Hanya menampilkan satu baris
     }
     return false ;
   }
@@ -158,6 +158,14 @@ class User_Model extends CI_Model
           location.replace("edit")
         }';
       echo '</script>';
+    }
+  }
+  public function hapusevent($id){
+    $bisa = $this->db->delete('event', array('id_event' => $id));
+    if($bisa){
+      redirect(base_url('dashboard'));
+    }else{
+      echo 'gagal';
     }
   }
 }

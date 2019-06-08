@@ -12,30 +12,33 @@ class Beli_model extends CI_Model
 
   public function cek_tiket($id){
     $query = $this->db->get_where('event',array('id_event'=>$id));
-    if(!empty($query->row_array())){
-      return $query->result();
+    if(!empty($query->row())){
+      $a = $query->row();
+      return $a->kuota_tiket;
     }
     return false ;
   }
   public function ambilharga($id){
     $query = $this->db->get_where('event',array('id_event'=>$id));
-    if(!empty($query->row_array())){
-      return $query->result();
+    if(!empty($query->row())){
+      $a= $query->row();
+      return $a->harga_tiket;
     }
     return false ;
   }
-  public function beli($id){
+  public function beli($id,$harga){
     // $acara = $this->input->post('acara');
     // $slug = str_replace(" ","-",$acara);
-    $harga_ = $harga['harga_tiket'];
-    $harga = $this->beli_model->ambilharga($id);
+
+
+
     $cust = [
       'nama_cust'                  => $this->input->post('nama_cust'),
       'email'                      => $this->input->post('email_cust'),
       'no_hp'                      => $this->input->post('hp_cust'),
       'jml_tiket'                  => $this->input->post('tiket_cust'),
       'id_event'                   => $id,
-      'harga_tiket'                => $harga_
+      'harga_tiket'                   => $harga
       // 'status_pembayaran'          => $this->input->post('tanggal_mulai'),
       // 'status_cekin'               => $this->input->post('tanggal_mulai'),
       // 'status_pendaftaran'      => $this->input->post('tanggal_selesai'),
@@ -61,7 +64,9 @@ class Beli_model extends CI_Model
       echo '</script>';
     }
   }
+public function kurangitiket($id){
 
+}
 
 }
 

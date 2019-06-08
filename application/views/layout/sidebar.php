@@ -25,12 +25,13 @@
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="header">MAIN NAVIGATION</li>
-      <li class="treeview menu-open">
-        <a href="../dashboard">
-          <a href = "../dashboard" class="fa fa-dashboard"><span>  Dashboard</span></a>
+      <li class="header">Menu</li>
+
+      <li>
+        <a href="<?php echo base_url('dashboard') ?>">
+          <i class="fa fa-dashboard"></i><span>  Dashboard</span>
           <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
+            <!-- <i class="fa fa-angle-left pull-right"></i> -->
           </span>
         </a>
       </li>
@@ -82,10 +83,16 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="addevent"><i class="fa fa-circle-o"></i> Buat Event</a></li>
-          <li><a href=""><i class="fa fa-circle-o"></i> Edit Event</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Validasi Pembayaran</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Cek Peserta</a></li>
+
         </ul>
       </li>
-
+      <li>
+        <a href="pages/calendar.html">
+          <i class="fa fa-calendar"></i> <span>Cek In Peserta</span>
+        </a>
+      </li>
       <li class="treeview">
         <a href="#">
           <i class="fa fa-edit"></i> <span>Keuangan</span>
@@ -94,7 +101,6 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="#"><i class="fa fa-circle-o"></i> Validasi Pembayaran</a></li>
           <li><a href="#"><i class="fa fa-circle-o"></i> Laporan Keuangan</a></li>
         </ul>
       </li>
@@ -110,11 +116,7 @@
           <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
         </ul>
       </li> -->
-      <li>
-        <a href="pages/calendar.html">
-          <i class="fa fa-calendar"></i> <span>Cek In Peserta</span>
-        </a>
-      </li>
+
 
   </section>
   <!-- /.sidebar -->
