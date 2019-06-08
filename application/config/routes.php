@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 // $route['profile'] = 'user/profile';
 $route['dashboard'] = 'user/profile';
 $route['addevent'] = 'user/addevent';

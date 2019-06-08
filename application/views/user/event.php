@@ -1,11 +1,28 @@
 
+<div class="content-wrapper">
+<section = "content">
+  <!-- TABLE: LATEST ORDERS -->
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Event Berhasil Dibuat</h3>
 
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
+      <div class="table-responsive">
+        <?php if($event == true){
+          foreach ($event as $e ):
+         ?>
 
+<a href="<?php echo base_url() ?>event/tampil/<?php echo $e['id_event'].'/'.$e['slug'] ?>"><?php echo base_url() ?>event/tampil/<?php echo $e['id_event'].'/'.$e['slug'] ?></a>
+<?php endforeach;}else echo 'Tidak ada data' ?>
 
-<p>event anda berhasil dibuat !</p>
-<p>berikut adalah halaman penjualan anda ..</p>
+</div>
+</div>
+</div>
 
-<?php  $user = $user['nama']?><br>
-<?php  'id = '.$id = $id['id_event']?>
-<?php $data2['id'] = $this->user_model->get_new_id($user); ?>
-<a href="<?php echo base_url() ?>event/tampil/<?php echo $id.'/'.$slug ?>"><?php echo base_url() ?>event/tampil/<?php echo $id.'/'.$slug ?></a>
+  </section>

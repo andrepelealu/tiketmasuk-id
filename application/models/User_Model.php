@@ -4,14 +4,11 @@ class User_Model extends CI_Model
   public function __construct()
   {
     parent::__construct();
-
   }
-
   public function insert_user()
   {
     $this->load->helper('string');
     $_SESSION['token'] = random_string('alnum',16);
-
     $data = [
       'email'     => $this->input->post('email'),
       'nama'      => $this->input->post('nama'),
@@ -20,7 +17,6 @@ class User_Model extends CI_Model
     ];
     $this->db->insert('users', $data);
   }
-
   public function get_user($key, $value){
     $query = $this->db->get_where('users',array($key=>$value));
     if(!empty($query->row_array())){
@@ -42,8 +38,8 @@ class User_Model extends CI_Model
     }
     return false ;
   }
+  
   public function get_new_id($user){
-
     $this->db->order_by('id_event', 'desc');
     $this->db->limit(1);
     $query = $this->db->get_where('event',array('user'=>$user));
@@ -52,7 +48,6 @@ class User_Model extends CI_Model
       return $query->row_array();
     }
     return false ;
-
   }
   ///update role setelah klik email verifikasi
   public function update_role($user_id,$role_nr)
@@ -60,7 +55,6 @@ class User_Model extends CI_Model
     $data = array('role'=> $role_nr);
     $this->db->where('id',$user_id);
     return $this->db->update('users',$data);
-
   }
   public function is_loggedIn(){
     if(!isset($_SESSION['logged_in'])){
@@ -74,10 +68,7 @@ class User_Model extends CI_Model
     // $_SESSION['token'] = random_string('alnum',16);
     $acara = $this->input->post('acara');
     $slug = str_replace(" ","-",$acara);
-
     $data = [
-
-
       'nama_penyelenggara'          => $this->input->post('nama'),
       'user'                        => $this->input->post('nama_'),
       'nama_acara'                  => $this->input->post('acara'),
@@ -93,7 +84,6 @@ class User_Model extends CI_Model
       'harga_tiket'                 => $this->input->post('harga_tiket'),
       'slug'                        => $slug
     ];
-
     $bisa = $this->db->insert('event', $data);
     if($bisa){
       // get id terbaru -> lempar ke link -> redirect halaman penjualan
@@ -116,7 +106,6 @@ class User_Model extends CI_Model
   public function tampiluser()
   {
     return $this->db->get('users');
-
   }
   public function editevent($id){
     $data = array(
@@ -135,7 +124,6 @@ class User_Model extends CI_Model
       'harga_tiket'                 => $this->input->post('harga_tiket')
       // 'slug'                        => $slug
     );
-
     $this->db->where('id_event', $id);
     $bisa = $this->db->update('event', $data);
     if($bisa){
@@ -147,10 +135,7 @@ class User_Model extends CI_Model
 // echo 'alert("message successfully sent")';
 // echo '</script>';
         redirect('edit/'.$id);
-
-
       // echo '</script>';
-
       // redirect('profile');
     }else{
       echo '<script language="javascript">';
@@ -169,5 +154,4 @@ class User_Model extends CI_Model
     }
   }
 }
-
  ?>
