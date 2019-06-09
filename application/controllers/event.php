@@ -13,14 +13,13 @@ class Event extends CI_Controller {
 			}
 	$this->user_model->hapusevent($id);
 	}
-	public function tampil($user,$slug){
+	public function tampil($idevent,$slug){
 		if(!$this->user_model->is_loggedIn())  {
 				redirect('login');
 			}
-			$data2['event'] = $this->user_model->get_event2('user',$_SESSION['nama']);
+			$data2['event'] = $this->user_model->get_event2('id_event',$idevent);
 			$data['user'] = $this->user_model->get_user('id',$_SESSION['user_id']);
 			// $data2['id'] = $this->user_model->get_new_id($user);
-			$slug_['slug'] = $slug;
 			$this->load->view('layout/header_profile',$data);
 			$this->load->view('layout/sidebar');
 

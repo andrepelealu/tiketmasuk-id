@@ -41,6 +41,14 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('harga_tiket','Harga Tiket , Jika acara gratis , isi dengan angka 0','required');
 
 		if($this->form_validation->run() === false){
+			if(isset($_POST['submit'])){
+				echo "<script type='text/javascript'>alert('Gagal Menambahkan Event, Pastikan Anda Mengisi Data Dengan Benar :)')</script>";
+				$data['user'] = $this->user_model->get_user('id',$_SESSION['user_id']);
+				$this->load->view('layout/header_profile',$data);
+				$this->load->view('layout/sidebar',$data);
+				$this->load->view('user/addevent',$data);
+				$this->load->view('layout/footer');
+			}
 			$data['user'] = $this->user_model->get_user('id',$_SESSION['user_id']);
 			$this->load->view('layout/header_profile',$data);
 			$this->load->view('layout/sidebar',$data);

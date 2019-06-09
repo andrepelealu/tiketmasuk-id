@@ -107,7 +107,7 @@
                  ?>
 
                   <tr>
-                    <td><a href=<?php echo base_url()?>event/<?php echo $e['user']?>/<?php echo $e['slug']?>><?php echo $e['nama_acara']?></a></td>
+                    <td><a href=<?php echo base_url()?>event/<?php echo $e['id_event']?>/<?php echo $e['slug']?>><?php echo $e['nama_acara']?></a></td>
                     <td><?php echo $e['tanggal_acara']?></td>
                     <td><?php echo $e['id_event']?></td>
                     <td><?php echo $e['id_event']?></td>

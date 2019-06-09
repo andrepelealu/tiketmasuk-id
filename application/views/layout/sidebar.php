@@ -82,7 +82,7 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="addevent"><i class="fa fa-circle-o"></i> Buat Event</a></li>
+          <li><a href="<?php echo base_url('addevent') ?>"><i class="fa fa-circle-o"></i> Buat Event</a></li>
           <li><a href="<?php echo base_url('verifikasi') ?>"><i class="fa fa-circle-o"></i> Validasi Pembayaran</a></li>
           <li><a href="#"><i class="fa fa-circle-o"></i> Cek Peserta</a></li>
 
